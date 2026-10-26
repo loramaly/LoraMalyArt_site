@@ -1,0 +1,100 @@
+/* ===== Tokens - same palette and fonts as the Design Area site ===== */
+:root{
+  --bg-page:#240C53;
+  --frame-line:#854CFF;
+  --chip-line:#8C55FF;
+  --text:#FFFFFF;
+  --text-soft:#E6DAFF;
+  --text-dim:#C3A7FF;
+  --accent-mint:#36E8B8;
+  --font:'Nunito',system-ui,sans-serif;
+  --script:'Luxurious Script',cursive;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  background:var(--bg-page);
+  color:var(--text);
+  font-family:var(--font);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;overflow-x:hidden;
+}
+
+/* striped glass band at the top + soft glow, faded out at the bottom */
+.bg-fx{position:absolute;inset:0 0 auto 0;height:720px;overflow:hidden;pointer-events:none;z-index:0}
+.bg-fx::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(100%,2400px);aspect-ratio:2400/611;
+  background:url('../assets/images/bg-texture.webp') top center/100% 100% no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 80px),transparent 100%);
+          mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 80px),transparent 100%);
+  opacity:.85;
+}
+.bg-fx::after{
+  content:"";position:absolute;left:50%;top:260px;width:900px;height:520px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(133,76,255,.35),transparent);
+}
+
+/* ===== Layout ===== */
+.page{
+  position:relative;z-index:1;
+  min-height:100vh;min-height:100svh;
+  max-width:760px;margin-inline:auto;
+  padding:72px 24px 64px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:36px;
+}
+
+/* ===== Logo + name ===== */
+.brand{display:flex;flex-direction:column;align-items:center;gap:14px}
+.brand-mark{width:132px;height:auto;filter:drop-shadow(0 10px 40px rgba(54,232,184,.25))}
+.brand-name{font-family:var(--script);font-weight:400;font-size:72px;line-height:1;letter-spacing:.01em}
+
+/* ===== Text ===== */
+.intro{display:flex;flex-direction:column;gap:16px;color:var(--text-soft)}
+.intro .lead{font-size:24px;font-weight:700;line-height:1.35;color:var(--text)}
+
+.motto{
+  font-size:28px;font-weight:800;line-height:1.25;letter-spacing:.01em;
+  background:linear-gradient(90deg,#FF8FC2,#FFE3D0 45%,var(--accent-mint));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ===== Coming soon pill ===== */
+.soon{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 26px;border:2px solid var(--chip-line);border-radius:999px;
+  font-size:15px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text);background:rgba(133,76,255,.18);
+}
+.soon-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-mint);
+  box-shadow:0 0 0 0 rgba(54,232,184,.6);animation:pulse 2.2s var(--ease-out) infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(54,232,184,.6)}
+  70%{box-shadow:0 0 0 10px rgba(54,232,184,0)}
+  100%{box-shadow:0 0 0 0 rgba(54,232,184,0)}
+}
+
+/* ===== Entrance ===== */
+.page > *{opacity:0;transform:translateY(14px);animation:rise .9s var(--ease-out) forwards}
+.page > :nth-child(2){animation-delay:.12s}
+.page > :nth-child(3){animation-delay:.24s}
+.page > :nth-child(4){animation-delay:.36s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .page > *{animation:none;opacity:1;transform:none}
+  .soon-dot{animation:none}
+}
+
+/* ===== Mobile ===== */
+@media (max-width:600px){
+  body{font-size:16px}
+  .page{padding:48px 16px 48px;gap:28px}
+  .brand-mark{width:104px}
+  .brand-name{font-size:56px}
+  .intro .lead{font-size:20px}
+  .motto{font-size:23px}
+  .soon{font-size:13px;padding:10px 20px}
+}
