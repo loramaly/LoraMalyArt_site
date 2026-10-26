@@ -50,11 +50,11 @@ body{
 /* ===== Logo + name ===== */
 .brand{display:flex;flex-direction:column;align-items:center;gap:14px}
 .brand-mark{width:132px;height:auto;filter:drop-shadow(0 10px 40px rgba(54,232,184,.25))}
-.brand-name{font-family:var(--serif);font-weight:300;font-size:68px;line-height:1;letter-spacing:.04em}
+.brand-name{font-family:var(--thin);font-weight:200;font-size:56px;line-height:1;letter-spacing:.12em;margin-right:-.12em}
 
 /* ===== Text ===== */
 .intro{display:flex;flex-direction:column;gap:16px;color:var(--text-soft)}
-.intro .lead{font-size:24px;font-weight:700;line-height:1.35;color:var(--text)}
+.intro .lead{font-family:var(--thin);font-size:26px;font-weight:300;line-height:1.35;color:var(--text)}
 
 .motto{
   font-family:var(--thin);font-weight:200;
@@ -110,8 +110,8 @@ body{
   body{font-size:16px}
   .page{padding:48px 16px 48px;gap:28px}
   .brand-mark{width:104px}
-  .brand-name{font-size:54px}
-  .intro .lead{font-size:20px}
+  .brand-name{font-size:44px}
+  .intro .lead{font-size:22px}
   .motto{font-size:30px}
   .soon{letter-spacing:.12em}
   .soon-line{margin-right:-.12em}
